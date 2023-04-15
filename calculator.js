@@ -40,15 +40,16 @@ console.log(operate('*', 7, 8));
 console.log(operate('/', 70, 35));
 */
 
-let temp = "";
-let tempOperator = "";
-let tempNext = "";
+let temp = ""; // first number 
+let tempNext = ""; // next number
+let tempOperator = ""; // first operator 
 
 let tempToInt = parseInt(temp);;
 let tempNextToInt = parseInt(tempNext);
 
-const x = document.createElement("INPUT");
+const x = document.createElement("Input");
 x.setAttribute("value", temp);
+x.setAttribute("readonly", "readonly"); // Add this line
 x.classList.add("centered");
 document.body.appendChild(x);
 
@@ -225,8 +226,8 @@ function addNineNext () {
 
 const addition = document.querySelector('#add');
 addition.addEventListener('click', () => {
-    tempOperator = "+";
     if (tempNext == "") {
+        tempOperator = "+";
         zero.removeEventListener('click', addZero);
         zero.addEventListener('click', addZeroNext);
         one.removeEventListener('click', addOne);
@@ -248,81 +249,128 @@ addition.addEventListener('click', () => {
         nine.removeEventListener('click', addNine);
         nine.addEventListener('click', addNineNext);
     } 
+    else if ((tempToInt != "") && (tempNextToInt != "")) {
+        let result = operate(tempOperator, tempToInt, tempNextToInt);
+        x.value = result;
+        temp = result.toString();
+        tempToInt = result;
+        tempOperator = "+";
+
+        tempNext = "";
+
+    }
 });
 
 const subtraction = document.querySelector('#subtract');
 subtraction.addEventListener('click', () => {
-    tempOperator = "-";
-    zero.removeEventListener('click', addZero);
-    zero.addEventListener('click', addZeroNext);
-    one.removeEventListener('click', addOne);
-    one.addEventListener('click', addOneNext);
-    two.removeEventListener('click', addTwo);
-    two.addEventListener('click', addTwoNext);
-    three.removeEventListener('click', addThree);
-    three.addEventListener('click', addThreeNext);
-    four.removeEventListener('click', addFour);
-    four.addEventListener('click', addFourNext);
-    five.removeEventListener('click', addFive);
-    five.addEventListener('click', addFiveNext);
-    six.removeEventListener('click', addSix);
-    six.addEventListener('click', addSixNext);
-    seven.removeEventListener('click', addSeven);
-    seven.addEventListener('click', addSevenNext);
-    eight.removeEventListener('click', addEight);
-    eight.addEventListener('click', addEightNext);
-    nine.removeEventListener('click', addNine);
-    nine.addEventListener('click', addNineNext);
+    if (tempNext == "") {
+        tempOperator = "-";
+        zero.removeEventListener('click', addZero);
+        zero.addEventListener('click', addZeroNext);
+        one.removeEventListener('click', addOne);
+        one.addEventListener('click', addOneNext);
+        two.removeEventListener('click', addTwo);
+        two.addEventListener('click', addTwoNext);
+        three.removeEventListener('click', addThree);
+        three.addEventListener('click', addThreeNext);
+        four.removeEventListener('click', addFour);
+        four.addEventListener('click', addFourNext);
+        five.removeEventListener('click', addFive);
+        five.addEventListener('click', addFiveNext);
+        six.removeEventListener('click', addSix);
+        six.addEventListener('click', addSixNext);
+        seven.removeEventListener('click', addSeven);
+        seven.addEventListener('click', addSevenNext);
+        eight.removeEventListener('click', addEight);
+        eight.addEventListener('click', addEightNext);
+        nine.removeEventListener('click', addNine);
+        nine.addEventListener('click', addNineNext);
+    } 
+    else if ((tempToInt != "") && (tempNextToInt != "")) {
+        let result = operate(tempOperator, tempToInt, tempNextToInt);
+        x.value = result;
+        temp = result.toString();
+        tempToInt = result;
+        tempOperator = "-";
+
+        tempNext = "";
+
+    }
 });
 
 const multiplication = document.querySelector('#multiply');
 multiplication.addEventListener('click', () => {
-    tempOperator = "*";
-    zero.removeEventListener('click', addZero);
-    zero.addEventListener('click', addZeroNext);
-    one.removeEventListener('click', addOne);
-    one.addEventListener('click', addOneNext);
-    two.removeEventListener('click', addTwo);
-    two.addEventListener('click', addTwoNext);
-    three.removeEventListener('click', addThree);
-    three.addEventListener('click', addThreeNext);
-    four.removeEventListener('click', addFour);
-    four.addEventListener('click', addFourNext);
-    five.removeEventListener('click', addFive);
-    five.addEventListener('click', addFiveNext);
-    six.removeEventListener('click', addSix);
-    six.addEventListener('click', addSixNext);
-    seven.removeEventListener('click', addSeven);
-    seven.addEventListener('click', addSevenNext);
-    eight.removeEventListener('click', addEight);
-    eight.addEventListener('click', addEightNext);
-    nine.removeEventListener('click', addNine);
-    nine.addEventListener('click', addNineNext);
+    // 5 * 
+    if (tempNext == "") {
+        tempOperator = "*";
+        zero.removeEventListener('click', addZero);
+        zero.addEventListener('click', addZeroNext);
+        one.removeEventListener('click', addOne);
+        one.addEventListener('click', addOneNext);
+        two.removeEventListener('click', addTwo);
+        two.addEventListener('click', addTwoNext);
+        three.removeEventListener('click', addThree);
+        three.addEventListener('click', addThreeNext);
+        four.removeEventListener('click', addFour);
+        four.addEventListener('click', addFourNext);
+        five.removeEventListener('click', addFive);
+        five.addEventListener('click', addFiveNext);
+        six.removeEventListener('click', addSix);
+        six.addEventListener('click', addSixNext);
+        seven.removeEventListener('click', addSeven);
+        seven.addEventListener('click', addSevenNext);
+        eight.removeEventListener('click', addEight);
+        eight.addEventListener('click', addEightNext);
+        nine.removeEventListener('click', addNine);
+        nine.addEventListener('click', addNineNext);
+    } 
+    // 5 + 4 * 
+    else if ((tempToInt != "") && (tempNextToInt != "")) {
+        let result = operate(tempOperator, tempToInt, tempNextToInt);
+        x.value = result;
+        temp = result.toString();
+        tempToInt = result;     
+
+        tempNext = "";
+        tempOperator = "*";
+    }
 });
 
 const divison = document.querySelector('#divide');
 divison.addEventListener('click', () => {
-    tempOperator = "/";
-    zero.removeEventListener('click', addZero);
-    zero.addEventListener('click', addZeroNext);
-    one.removeEventListener('click', addOne);
-    one.addEventListener('click', addOneNext);
-    two.removeEventListener('click', addTwo);
-    two.addEventListener('click', addTwoNext);
-    three.removeEventListener('click', addThree);
-    three.addEventListener('click', addThreeNext);
-    four.removeEventListener('click', addFour);
-    four.addEventListener('click', addFourNext);
-    five.removeEventListener('click', addFive);
-    five.addEventListener('click', addFiveNext);
-    six.removeEventListener('click', addSix);
-    six.addEventListener('click', addSixNext);
-    seven.removeEventListener('click', addSeven);
-    seven.addEventListener('click', addSevenNext);
-    eight.removeEventListener('click', addEight);
-    eight.addEventListener('click', addEightNext);
-    nine.removeEventListener('click', addNine);
-    nine.addEventListener('click', addNineNext);
+    if (tempNext == "") {
+        tempOperator = "/";
+        zero.removeEventListener('click', addZero);
+        zero.addEventListener('click', addZeroNext);
+        one.removeEventListener('click', addOne);
+        one.addEventListener('click', addOneNext);
+        two.removeEventListener('click', addTwo);
+        two.addEventListener('click', addTwoNext);
+        three.removeEventListener('click', addThree);
+        three.addEventListener('click', addThreeNext);
+        four.removeEventListener('click', addFour);
+        four.addEventListener('click', addFourNext);
+        five.removeEventListener('click', addFive);
+        five.addEventListener('click', addFiveNext);
+        six.removeEventListener('click', addSix);
+        six.addEventListener('click', addSixNext);
+        seven.removeEventListener('click', addSeven);
+        seven.addEventListener('click', addSevenNext);
+        eight.removeEventListener('click', addEight);
+        eight.addEventListener('click', addEightNext);
+        nine.removeEventListener('click', addNine);
+        nine.addEventListener('click', addNineNext);
+    } 
+    else if ((tempToInt != "") && (tempNextToInt != "")) {
+        let result = operate(tempOperator, tempToInt, tempNextToInt);
+        x.value = result;
+        temp = result.toString();
+        tempToInt = result;
+        tempOperator = "/";
+
+        tempNext = "";
+
+    }
 });
 
 const equals = document.querySelector('#equals');
@@ -331,8 +379,9 @@ equals.addEventListener('click', () => {
     x.value = result;
     temp = result.toString();
     tempToInt = result;
-   
     tempNext = "";
+    tempNextToInt = tempNext;
+    /*
     zero.removeEventListener('click', addZero);
     one.removeEventListener('click', addOne);
     two.removeEventListener('click', addTwo);
@@ -343,6 +392,7 @@ equals.addEventListener('click', () => {
     seven.removeEventListener('click', addSeven);
     eight.removeEventListener('click', addEight);
     nine.removeEventListener('click', addNine);
+    */
 });
 
 
@@ -351,4 +401,5 @@ equals.addEventListener('click', () => {
 // click one (tempNext), which calls operate and removes this event listener / adds back old event listener
 
 
-
+// if u do more than 2 operations, it automatically evalautes the first 2 operations 
+// 3 + 5 and if u press another operator, it will calculate 8  
